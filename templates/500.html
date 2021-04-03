@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    خطأ في الخادم الداخلي
+{% endblock %}
+{% block content %}
+<style media="screen">
+    body {
+    background: #dedede;
+}
+.page-wrap {
+    min-height: 100vh;
+}
+</style>
+
+    <div class="page-wrap d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block">500</span>
+                    <div class="mb-4 lead">خطأ في الخادم الداخلي</div>
+                    <p>حدث خطأ, لقد تم ابلاغنا و فريقنا يعمل علي اصلاحة</p>
+                    <a href="/" class="btn btn-link">رجوع للرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

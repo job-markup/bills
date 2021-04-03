@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ar" dir="rtl">
+  <style media="screen">
+    body{
+      direction: rtl !important;
+      text-align: right !important;
+    }
+  </style>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'base/css.html' %}
+    <link rel="shortcut icon" href="" />
+
+  </head>
+  <body>
+    {% include 'base/navbar.html' %}
+    {% block content %}
+    {% endblock %}
+
+
+    {% include 'base/footer.html' %}
+    {% include 'base/js.html' %}
+  </body>
+</html>

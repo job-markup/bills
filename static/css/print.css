@@ -1,0 +1,14 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+#print-btn{
+    display: none;
+    visibility: none;
+}
+
+#printMe {
+    text-align: right !important;
+    float: right !important;
+}

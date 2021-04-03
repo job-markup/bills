@@ -1,0 +1,7 @@
+<h4 class="h4-responsive text-center alert alert-info">
+ اهلا, {% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user.username }}{% endif %}
+     </h4>
+<a class="btn btn-sm  btn-warning text-dark" href="{% url 'products:alerts' %}">انذارات المخزن</a>
+<a class="btn btn-sm  btn-warning text-dark" href="{% url 'products:product_list' %}">المنتجات</a>
+<br>
+<hr>

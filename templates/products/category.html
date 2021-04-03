@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {{ category }}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    {% include 'base/side_nav.html' %}
+  <h4 class="text-center">المنتجات <a class="text-success" onclick="window.open('{% url 'admin:products_product_add' %}','popup','width=610,height=610'); return false;" href="{% url 'admin:products_product_add' %}"  target="popup"><i class="far fa-plus-square"></i></a></h4>
+
+  {% if products|length > 0 %}
+  <div class="row">
+    {% for product in products %}
+      <div class="col-6 col-sm-6 col-md-3 col-lg-3 mt-3 text-center">
+        <div class="card">
+          <div class="card-body fix">
+            <h5 title="View" class="card-title"><a href="#">{{ product.name }} </a></h5>
+            <p class="card-text">كود المنتج: {{ product.product_code }}</p>
+            <p class="card-text">المتاح: {% if product.stock <= 10 %}<span class="text-danger">{{ product.stock }} قطعه فقط</span>{% else %}
+              <span class="text-success"> {{ product.stock }} قطعه</span>{% endif %}</p>
+            <p class="card-text text-success">
+                 {{ product.price }} {{ settings.CURRENCY }}
+            </p>
+            <a href="{% url 'admin:products_product_change' product.id %}" 
+            onclick="window.open('{% url 'admin:products_product_change' product.id %}','popup','width=610,height=610'); return false;"
+            target="popup" class="btn btn-success btn-sm">تعديل</a>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+        <div class="col-12"><hr></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+    <p class="lead text-danger">.لا يوجد منتجات</p>
+  {% endif %}
+</div>
+
+<div class="container">
+  {% if is_paginated %}
+  <ul class="pagination pagination-circle justify-content-center pg-amber">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+            <i class="fas fa-angle-double-right"></i> السابق
+        </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link">
+          <i class="fas fa-angle-double-right"></i> السابق
+        </a>
+    </li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+            التالي <i class="fas fa-angle-double-left"></i>
+        </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link">
+            التالي <i class="fas fa-angle-double-left"></i>
+        </a>
+    </li>
+    {% endif %}
+  </ul>
+  {% endif %}
+  </div>
+
+
+{% endblock %}
